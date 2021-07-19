@@ -125,28 +125,15 @@ class Calendar {
     addEventListenerToCells() {
         let elCells = this.elCalendar.querySelectorAll('.grid__cell--gd');
         elCells.forEach(elCell => {
-            elCell.addEventListener('click', e => {
+            elCell.addEventListener('dblclick', e => {
                 let elTarget = e.target;
-                if (elTarget.classList.contains('grid__cell--disabled') || elTarget.classList.contains('grid__cell--selected')) {
-                    return;
-                }
-                /*// Deselecionar la celda anterior
-                let selectedCell = this.elGridBody.querySelector('.grid__cell--selected');
-                if (selectedCell) {
-                    selectedCell.classList.remove('grid__cell--selected');
-                }*/
-                //deseleccionar al dar otro click
-                let selectedCell = this.elGridBody.querySelector('.grid__cell--selected');
-          
-                if (selectedCell) {
-                    elTarget.classList.remove('grid__cell--selected');}
-                // Selecionar la nueva celda
                 elTarget.classList.add('grid__cell--selected');
+
                 
-                this.selectedDate = this.cells[parseInt(elTarget.dataset.cellId)].date;
-                // Lanzar evento change
-                this.elCalendar.dispatchEvent(new Event('change'));
+                
             });
+    
+        
         });
     }
 
